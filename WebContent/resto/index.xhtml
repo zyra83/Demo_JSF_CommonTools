@@ -1,0 +1,48 @@
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/main.xhtml">
+
+	<ui:define name="zone-titre">
+		List des restaurants
+	</ui:define>
+
+
+	<ui:define name="zone-contenu">
+		<p:panel id="basic" header="Basic" footer="17-3A-pdi"
+			style="margin-bottom:20px">
+			<h:form id="dataForm">
+
+				<h:link outcome="ajouter-restaurant.xhtml" header="Données">Retour à l'ajout</h:link>
+
+				<!--  p comme paquet, il est dispo en completion automatique en dessous -->
+				<p:dataTable id="dataTable"
+					value="#{restaurantPageBean.listerRestaurants()}" var="r">
+
+					<p:column headerText="Nom">
+						<h:outputText value="#{r.nom}" />
+					</p:column>
+
+					<p:column headerText="Note">
+						<h:outputText value="#{r.note}" />
+					</p:column>
+
+
+					<p:column headerText="Position">
+						<h:outputText value="#{r.position}" />
+					</p:column>
+
+					<p:column headerText="Actions">
+						<h:commandButton value="Suppression"
+							actionListener="#{restaurantPageBean.suppression(r)}" />
+					</p:column>
+
+				</p:dataTable>
+			</h:form>
+		</p:panel>
+		
+	</ui:define>
+	
+</ui:composition>

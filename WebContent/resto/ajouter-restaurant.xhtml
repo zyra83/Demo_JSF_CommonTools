@@ -1,0 +1,36 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	template="/WEB-INF/templates/main.xhtml">
+
+	<ui:define name="zone-titre">
+		Ajouter un restaurant
+	</ui:define>
+
+	<ui:define name="zone-contenu">
+			<h:messages />
+			<h:form>
+				<div class="form-group">
+					<h:outputLabel value="Nom" for="nomResto" />
+					<h:inputText class="form-control" id="nomResto"
+						required="true" value="#{restaurantPageBean.nouveauRestaurant.nom}" />
+					<h:message for="nomResto" />
+				</div>
+				
+				<div class="form-group">
+					<h:outputLabel value="Note" for="noteResto" />
+					<h:inputText class="form-control" id="noteResto"
+						required="true" value="#{restaurantPageBean.nouveauRestaurant.nom}" />
+					<h:message for="noteResto" />
+				</div>
+				
+				<div class="form-group">
+					<button jsf:actionListener="#{restaurantPageBean.ajouterRestaurant()}" jsf:action="l" >Ajouter OK</button>
+				</div>
+			</h:form>
+
+	</ui:define>
+
+</ui:composition>
