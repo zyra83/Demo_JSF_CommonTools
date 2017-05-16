@@ -40,6 +40,10 @@ public class Restaurant implements Serializable{
 	@Getter
 	@Setter
 	Integer note;
+	
+	@Getter
+	@Setter
+	String adresse;
 
 	@Getter
 	@Setter

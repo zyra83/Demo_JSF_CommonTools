@@ -20,13 +20,24 @@
 						</h:inputText>
 					<h:message for="nomResto" />
 				</div>
-				
-				<div class="form-group">
+
+			<div class="form-group">
+				<h:outputLabel value="Adresse" for="addrResto" />
+				<h:inputText class="form-control" id="addrResto" required="true"
+					value="#{restaurantPageBean.nouveauRestaurant.adresse}"
+					validator="#{restaurantPageBean.validerAdresseRestaurant}" />
+				<h:message for="addrResto" />
+			</div>
+
+			<div class="form-group">
 					<h:outputLabel value="Note" for="noteResto" />
 					<h:inputText class="form-control" id="noteResto"
 						required="true" value="#{restaurantPageBean.nouveauRestaurant.nom}" />
 					<h:message for="noteResto" />
 				</div>
+				
+				
+				
 				
 				<div class="form-group">
 					<button jsf:actionListener="#{restaurantPageBean.ajouterRestaurant()}" jsf:action="l" >Ajouter OK</button>
