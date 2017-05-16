@@ -15,7 +15,9 @@
 				<div class="form-group">
 					<h:outputLabel value="Nom" for="nomResto" />
 					<h:inputText class="form-control" id="nomResto"
-						required="true" value="#{restaurantPageBean.nouveauRestaurant.nom}" />
+						required="true" value="#{restaurantPageBean.nouveauRestaurant.nom}" >
+							<f:validateRegex pattern="[A-Z ]+" />
+						</h:inputText>
 					<h:message for="nomResto" />
 				</div>
 				
