@@ -1,8 +1,7 @@
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf"
 	template="/WEB-INF/templates/main.xhtml">
 
 	<ui:define name="zone-titre">
@@ -10,17 +9,18 @@
 	</ui:define>
 
 	<ui:define name="zone-contenu">
-			<h:messages />
-			<h:form>
-				<div class="form-group">
-					<h:outputLabel value="Nom" for="nomResto" />
-					<h:inputText class="form-control" id="nomResto"
-						required="true" value="#{restaurantPageBean.nouveauRestaurant.nom}" >
-							<f:validateRegex pattern="[A-Z ]+" />
-						</h:inputText>
-					<h:message for="nomResto" />
-				</div>
+		<h:messages />
+		<h:form>
+			<div class="form-group">
+				<h:outputLabel value="Nom" for="nomResto" />
+				<h:inputText class="form-control" id="nomResto" required="true"
+					value="#{restaurantPageBean.nouveauRestaurant.nom}">
+					<f:validateRegex pattern="[A-Z ]+" />
+				</h:inputText>
+				<h:message for="nomResto" />
+			</div>
 
+			<!--  Avec le validator + required + beanValidation -->
 			<div class="form-group">
 				<h:outputLabel value="Adresse" for="addrResto" />
 				<h:inputText class="form-control" id="addrResto" required="true"
@@ -29,20 +29,52 @@
 				<h:message for="addrResto" />
 			</div>
 
+
 			<div class="form-group">
-					<h:outputLabel value="Note" for="noteResto" />
-					<h:inputText class="form-control" id="noteResto"
-						required="true" value="#{restaurantPageBean.nouveauRestaurant.nom}" />
-					<h:message for="noteResto" />
-				</div>
-				
-				
-				
-				
-				<div class="form-group">
-					<button jsf:actionListener="#{restaurantPageBean.ajouterRestaurant()}" jsf:action="l" >Ajouter OK</button>
-				</div>
-			</h:form>
+				<h:outputLabel value="Date Notation" for="dateNote" />
+				<h:inputText class="form-control" id="dateNote" required="true"
+					value="#{restaurantPageBean.nouveauRestaurant.dateNotation}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:inputText>
+				<h:message for="dateNote" />
+			</div>
+
+
+			<div class="form-group">
+				<h:outputLabel value="Date Ref." for="dateRef" />
+				<h:inputText class="form-control" id="dateRef" required="true"
+					value="#{restaurantPageBean.nouveauRestaurant.dateReferencement}" />
+				<h:message for="dateRef" />
+			</div>
+
+
+
+			<div class="form-group">
+				<h:outputLabel value="Note" for="noteResto" />
+				<h:inputText class="form-control" id="noteResto" required="true"
+					value="#{restaurantPageBean.nouveauRestaurant.nom}" />
+				<h:message for="noteResto" />
+			</div>
+
+			<div class="form-group">
+				<h:outputLabel value="Note" for="villeResto" />
+				<h:selectOneMenu id="villeResto" 
+				value="#{restaurantPageBean.nouveauRestaurant.ville}" 
+				converter="#{genericConverter}"	>
+					<f:selectItem itemDisabled="true" noSelectionOption="true" itemLabel="Selectionner une ville" />
+					<f:selectItem itemDisabled="true" noSelectionOption="false" itemLabel="Selectionner une ville" value="#{null}"/>
+					<f:selectItems  value="#{restaurantPageBean.listeVilles}" var="ville" itemLabel="#{ville.nom.toUpperCase()}"/>	
+				</h:selectOneMenu>
+				<h:message for="villeResto" />
+			</div>
+
+
+			<div class="form-group">
+				<button
+					jsf:actionListener="#{restaurantPageBean.ajouterRestaurant()}"
+					jsf:action="l">Ajouter OK</button>
+			</div>
+		</h:form>
 
 	</ui:define>
 

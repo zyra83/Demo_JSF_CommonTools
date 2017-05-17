@@ -16,6 +16,8 @@ import org.apache.commons.lang3.StringUtils;
 
 import democonverter.model.dao.DaoRestaurantJPA;
 import democonverter.model.entities.Restaurant;
+import democonverter.model.entities.Ville;
+import democonverter.model.facades.FacadeVille;
 import lombok.Getter;
 import lombok.Setter;
 import net.entetrs.commons.jsf.JsfUtils;
@@ -24,7 +26,7 @@ import net.entetrs.commons.jsf.JsfUtils;
 @Named
 @ViewScoped // reste la même vue tant qu'il y a des probelems de saisie pour
 			// l'utilisateur
-@ManagedBean
+//@ManagedBean
 public class RestaurantPageBean implements Serializable {
 	@Getter
 	@Setter
@@ -36,6 +38,19 @@ public class RestaurantPageBean implements Serializable {
 	@Inject
 	@Getter // pour y acceder depuis la page web
 	private Restaurant nouveauRestaurant;
+	
+	
+	@Inject
+	FacadeVille facadeVille;
+	
+	
+	/**
+	 * Tape sur la facade injectée
+	 */
+	public List<Ville> getListeVilles(){
+		return facadeVille.getListeVilles();
+	}
+	
 
 	public void ajouterRestaurant() {
 		daoRestaurant.create(nouveauRestaurant);
